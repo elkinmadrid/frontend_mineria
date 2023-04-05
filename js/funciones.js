@@ -31,8 +31,7 @@ function saveForm() {
         maxBodyLength: Infinity,
         url: 'https://mineria-api.onrender.com/api/v1/info-moto',
         headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+            'Content-Type': 'application/json'
         },
         data: formValues
     };
