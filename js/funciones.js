@@ -38,11 +38,15 @@ function saveForm() {
 
     axios.request(config).then(function (response) {
         console.log(response);
-        if (response.status === 201) {
+        let diag = document.getElementById('diag')
+        if (response.status === 201) {            
+            diag.innerHTML = response.data.message
+            limpiar()
 
-            console.log(response);
-
+        } else {
+            diag.innerHTML = response.data.message + ': comuniquese con el admin'
         }
+        $('#informationModal').modal({ show: true });
     })
 
 }
