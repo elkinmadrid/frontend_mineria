@@ -34,7 +34,7 @@ let mostrar_datos = async () => {
             <td>${dato.kilometraje}</td>
             <td>
               <a href="#"><i title="Editar" class="fas fa-edit"></i></a> |
-              <a href="#"><i title="Eliminar" class="fas fa-trash"></i></a>
+              <a class="eliminar" href="#"><i title="Eliminar" data-id="${dato.id}" class="fas fa-trash"></i></a>
             </td>
           </tr>
         `;
@@ -42,6 +42,49 @@ let mostrar_datos = async () => {
 
     tbody.innerHTML = html;
 
+    document.querySelectorAll('a.eliminar').forEach(el => {
+        el.addEventListener('click', e => {
+          e.preventDefault();
+          const id = e.target.dataset.id;
+          const confirmacion = confirm('¿Está seguro de que desea eliminar este elemento?');
+          if (confirmacion) {
+            eliminarRegistro(id);
+          }
+        });
+      });
+
 };
+
+
+function eliminarRegistro(id) {
+
+    let config = {
+        method: 'delete',
+        maxBodyLength: Infinity,
+        url: `https://mineria-api.onrender.com/api/v1/info-moto/${id}`,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    axios.request(config)
+        .then((response) => {
+            let diag = document.getElementById('diag')
+            if (response.status === 200) {
+                diag.innerHTML = response.data.message
+
+            } else {
+                diag.innerHTML = response.data.message + ': comuniquese con el admin'
+            }
+            $('#informationModal').modal({ show: true });
+
+            console.log(JSON.stringify(response.data));
+            mostrar_datos()
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
+}
 
 mostrar_datos();
