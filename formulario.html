@@ -51,8 +51,8 @@
                 </a>
             </li>
             <!-- Divider -->
-            <hr class="sidebar-divider">   
-            
+            <hr class="sidebar-divider">
+
             <li class="nav-item">
                 <a class="nav-link" href="formulario.html">
                     <i class="fas fa-fw fa-chart-area"></i>
@@ -65,13 +65,13 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Charts</span></a>
             </li>
-            
+
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <span>Mostrar información</span></a>
             </li>
 
             <!-- Divider -->
@@ -127,9 +127,9 @@
                             </div>
                         </li>
 
-                        
 
-                        
+
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -138,8 +138,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -177,118 +176,130 @@
 
                     <!-- Formulario -->
                     <div class="text-center">
-                      <form style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
-                        <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                          <label for="precio" style="width: 100px;">Precio:</label>
-                          <input type="text" id="precio" name="precio" required style="flex: 1;">
-                        </div>
-                        <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                          <label for="marca" style="width: 100px;">Marca:</label>
-                          <input type="text" id="marca" name="marca" required style="flex: 1;">
-                        </div>
-                        <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                          <label for="modelo" style="width: 100px;">Modelo:</label>
-                          <input type="text" id="modelo" name="modelo" required style="flex: 1;">
-                        </div>
-                        <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                          <label for="anio" style="width: 100px;">Año:</label>
-                          <input type="number" id="anio" name="anio" required style="flex: 1;">
-                        </div>
-                        <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                          <label for="color" style="width: 100px;">Color:</label>
-                          <input type="text" id="color" name="color" required style="flex: 1;">
-                        </div>
-                        <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                          <label for="kilometraje" style="width: 100px;">Kilometraje:</label>
-                          <input type="number" id="kilometraje" name="kilometraje" required style="flex: 1;">
-                        </div>
-                        <div style="text-align: center;">
-                          <input type="button" value="Guardar" style="background-color: #007bff; color: white; border: none; padding: 5px 15px; border-radius: 5px; font-size: 16px;" onClick="saveForm()">
-                          <input type="button" value="Limpiar" style="background-color: #dc3545; color: white; border: none; padding: 5px 15px; border-radius: 5px; font-size: 16px; margin-right: 10px;" onClick="limpiar()">
-                          
+                        <form style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
+                            <div
+                                style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <label for="precio" style="width: 100px;">Precio:</label>
+                                <input type="text" id="precio" name="precio" required style="flex: 1;">
+                            </div>
+                            <div
+                                style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <label for="marca" style="width: 100px;">Marca:</label>
+                                <input type="text" id="marca" name="marca" required style="flex: 1;">
+                            </div>
+                            <div
+                                style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <label for="modelo" style="width: 100px;">Modelo:</label>
+                                <input type="text" id="modelo" name="modelo" required style="flex: 1;">
+                            </div>
+                            <div
+                                style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <label for="anio" style="width: 100px;">Año:</label>
+                                <input type="number" id="anio" name="anio" required style="flex: 1;">
+                            </div>
+                            <div
+                                style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <label for="color" style="width: 100px;">Color:</label>
+                                <input type="text" id="color" name="color" required style="flex: 1;">
+                            </div>
+                            <div
+                                style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <label for="kilometraje" style="width: 100px;">Kilometraje:</label>
+                                <input type="number" id="kilometraje" name="kilometraje" required style="flex: 1;">
+                            </div>
+                            <div style="text-align: center;">
+                                <input type="button" value="Guardar"
+                                    style="background-color: #007bff; color: white; border: none; padding: 5px 15px; border-radius: 5px; font-size: 16px;"
+                                    onClick="saveForm()">
+                                <input type="button" value="Limpiar"
+                                    style="background-color: #dc3545; color: white; border: none; padding: 5px 15px; border-radius: 5px; font-size: 16px; margin-right: 10px;"
+                                    onClick="limpiar()">
 
 
-                        </div>
-                      </form>
+
+                            </div>
+                        </form>
                     </div>
-                    
-                  </div>
-                  <!-- /.container-fluid -->
-                  
 
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
+                <!-- /.container-fluid -->
+
+
+
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Your Website 2020</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
+
+            </div>
+            <!-- End of Content Wrapper -->
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- End of Page Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Message information Modal-->
-    <div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Información</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body"><p id="diag"></p></div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <!-- Message information Modal-->
+        <div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Información</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="diag"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 
 </html>
