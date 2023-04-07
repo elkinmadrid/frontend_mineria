@@ -18,11 +18,12 @@ let listar_motos = async () => {
 };
 
 const tbody = document.querySelector('#userList tbody');
+var idActualizar = 0
 let mostrar_datos = async () => {
-    let productos = await listar_motos();
+    let motos = await listar_motos();
     let html = '';
 
-    productos.forEach(dato => {
+    motos.forEach(dato => {
         html += `
           <tr>
             <th scope="row">${dato.id}</th>
@@ -33,7 +34,7 @@ let mostrar_datos = async () => {
             <td>${dato.color}</td>
             <td>${dato.kilometraje}</td>
             <td>
-              <a href="#"><i title="Editar" class="fas fa-edit"></i></a> |
+              <a class="actualizar" href="#"><i title="Editar"  data-id="${dato.id}" class="fas fa-edit"></i></a> |
               <a class="eliminar" href="#"><i title="Eliminar" data-id="${dato.id}" class="fas fa-trash"></i></a>
             </td>
           </tr>
@@ -44,14 +45,43 @@ let mostrar_datos = async () => {
 
     document.querySelectorAll('a.eliminar').forEach(el => {
         el.addEventListener('click', e => {
-          e.preventDefault();
-          const id = e.target.dataset.id;
-          const confirmacion = confirm('¿Está seguro de que desea eliminar este elemento?');
-          if (confirmacion) {
-            eliminarRegistro(id);
-          }
+            e.preventDefault();
+            const id = e.target.dataset.id;
+            const confirmacion = confirm('¿Está seguro de que desea eliminar este elemento?');
+            if (confirmacion) {
+                eliminarRegistro(id);
+            }
         });
-      });
+    });
+
+    document.querySelectorAll('a.actualizar').forEach(el => {
+        el.addEventListener('click', e => {
+            e.preventDefault();
+            const id = e.target.dataset.id;
+            idActualizar = id
+
+
+            let moto = motos.filter(item => item.id == id)
+
+            var precio = document.getElementById('precio')
+            var modelo = document.getElementById('modelo')
+            var marca = document.getElementById('marca')
+            var anio = document.getElementById('anio')
+            var kilometraje = document.getElementById('kilometraje')
+            var color = document.getElementById('color')
+
+
+            precio.value = moto[0].precio
+            modelo.value = moto[0].modelo
+            marca.value = moto[0].marca
+            anio.value = moto[0].anio
+            kilometraje.value = moto[0].kilometraje
+            color.value = moto[0].color
+
+            console.log(moto);
+            $('#fm_actualizar').modal({ show: true });
+        });
+    });
 
 };
 
@@ -84,6 +114,61 @@ function eliminarRegistro(id) {
         .catch((error) => {
             console.log(error);
         });
+
+}
+
+
+function actualizarRegistro() {
+
+    var precio = document.getElementById('precio').value
+    var modelo = document.getElementById('modelo').value
+    var marca = document.getElementById('marca').value
+    var anio = document.getElementById('anio').value
+    var kilometraje = document.getElementById('kilometraje').value
+    var color = document.getElementById('color').value
+
+    console.log(` Registro que vamos a actualizar ${idActualizar} `);
+
+
+    let data = JSON.stringify({
+        "anio": anio,
+        "color": color,
+        "kilometraje": kilometraje,
+        "marca": marca,
+        "modelo": modelo,
+        "precio": precio
+    });
+
+    let config = {
+        method: 'put',
+        maxBodyLength: Infinity,
+        url: `https://mineria-api.onrender.com/api/v1/info-moto/${idActualizar}`,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: data
+    };
+
+    axios.request(config)
+        .then((response) => {
+
+            let diag = document.getElementById('diag')
+            if (response.status === 200) {
+                $('#fm_actualizar').modal('hide');
+                diag.innerHTML = response.data.message
+
+            } else {
+                diag.innerHTML = response.data.message + ': comuniquese con el admin'
+            }
+            
+            $('#informationModal').modal({ show: true });
+            console.log(JSON.stringify(response.data));
+            mostrar_datos()
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
 
 }
 

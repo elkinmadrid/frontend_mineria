@@ -126,6 +126,8 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control bg-light border-0 small"
                                             placeholder="Search for..." aria-label="Buscar"
+
+                                            onkeypress=""
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
@@ -206,10 +208,6 @@
 
                         </div>
                     </div>
-                    <a href="tables.html" class="btn btn-primary btn-user btn-sm">
-                        Actualizar
-
-                    </a>
 
 
                 </div>
@@ -260,24 +258,90 @@
     </div>
 
     <div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Información</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p id="diag"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                    </div>
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Información</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="diag"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- actualizar Modal-->
+    <div class="modal fade" id="fm_actualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Actualizar de Datos</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+
+                <!-- Formulario -->
+                <div class="modal-body">
+                    <div class="text-center">
+                        <form style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
+                            <div
+                                style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <label for="precio" style="width: 100px;">Precio:</label>
+                                <input type="text" id="precio" name="precio" required style="flex: 1;">
+                            </div>
+                            <div
+                                style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <label for="marca" style="width: 100px;">Marca:</label>
+                                <input type="text" id="marca" name="marca" required style="flex: 1;">
+                            </div>
+                            <div
+                                style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <label for="modelo" style="width: 100px;">Modelo:</label>
+                                <input type="text" id="modelo" name="modelo" required style="flex: 1;">
+                            </div>
+                            <div
+                                style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <label for="anio" style="width: 100px;">Año:</label>
+                                <input type="number" id="anio" name="anio" required style="flex: 1;">
+                            </div>
+                            <div
+                                style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <label for="color" style="width: 100px;">Color:</label>
+                                <input type="text" id="color" name="color" required style="flex: 1;">
+                            </div>
+                            <div
+                                style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <label for="kilometraje" style="width: 100px;">Kilometraje:</label>
+                                <input type="number" id="kilometraje" name="kilometraje" required style="flex: 1;">
+                            </div>
+                            <div style="text-align: center;">
+                               
+    
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <input type="button" value="Actualizar" onClick="actualizarRegistro()"
+                    style="background-color: #007bff; color: white; border: none; padding: 5px 15px; border-radius: 5px; font-size: 16px;">
+
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Bootstrap core JavaScript-->
