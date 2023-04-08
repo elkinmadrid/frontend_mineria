@@ -32,7 +32,7 @@ function login() {
         console.log(response);
         if (response.data.message === 'You are logged in successfully') {
             console.log(document.cookie);
-            window.location.href = '/tables.html';
+            window.location.href = '/frontend_mineria/tables.html';
         } else {
             alert('Bad Request - invalid credentials');
         }
