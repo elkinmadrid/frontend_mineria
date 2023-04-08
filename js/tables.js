@@ -20,6 +20,9 @@ let listar_motos = async () => {
     })
         .catch(function (err) {
             console.log(err);
+            if (err.response.status == 401) {
+                window.location.href = '/frontend_mineria/index.html';
+            }
         });
     console.log(document.cookie);
     return motos;
