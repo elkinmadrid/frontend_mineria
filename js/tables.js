@@ -1,11 +1,18 @@
+const url_base = 'https://mineria-api.onrender.com';
+
+
 let listar_motos = async () => {
     let motos;
     let config = {
         method: 'get',
+        withCredentials: true,
         maxBodyLength: Infinity,
-        url: 'https://mineria-api.onrender.com/api/v1/info-moto',
+        url: url_base + '/api/v1/info-moto',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Allow-Origin': '*',
+            'Cookie': document.cookie
         }
     };
     await axios(config).then(function (res) {
@@ -14,6 +21,7 @@ let listar_motos = async () => {
         .catch(function (err) {
             console.log(err);
         });
+    console.log(document.cookie);
     return motos;
 };
 
@@ -91,7 +99,7 @@ function eliminarRegistro(id) {
     let config = {
         method: 'delete',
         maxBodyLength: Infinity,
-        url: `https://mineria-api.onrender.com/api/v1/info-moto/${id}`,
+        url: `${url_base}/api/v1/info-moto/${id}`,
         headers: {
             'Content-Type': 'application/json'
         }
@@ -142,7 +150,7 @@ function actualizarRegistro() {
     let config = {
         method: 'put',
         maxBodyLength: Infinity,
-        url: `https://mineria-api.onrender.com/api/v1/info-moto/${idActualizar}`,
+        url: `${url_base}/api/v1/info-moto/${idActualizar}`,
         headers: {
             'Content-Type': 'application/json'
         },
@@ -160,7 +168,7 @@ function actualizarRegistro() {
             } else {
                 diag.innerHTML = response.data.message + ': comuniquese con el admin'
             }
-            
+
             $('#informationModal').modal({ show: true });
             console.log(JSON.stringify(response.data));
             mostrar_datos()
