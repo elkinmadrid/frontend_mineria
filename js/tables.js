@@ -102,9 +102,13 @@ function eliminarRegistro(id) {
     let config = {
         method: 'delete',
         maxBodyLength: Infinity,
+        withCredentials: true,
         url: `${url_base}/api/v1/info-moto/${id}`,
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Allow-Origin': '*',
+            'Cookie': document.cookie
         }
     };
 
@@ -124,6 +128,9 @@ function eliminarRegistro(id) {
         })
         .catch((error) => {
             console.log(error);
+            if (err.response.status == 401) {
+                window.location.href = '/frontend_mineria/index.html';
+            }
         });
 
 }
@@ -152,10 +159,14 @@ function actualizarRegistro() {
 
     let config = {
         method: 'put',
+        withCredentials: true,
         maxBodyLength: Infinity,
         url: `${url_base}/api/v1/info-moto/${idActualizar}`,
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Allow-Origin': '*',
+            'Cookie': document.cookie
         },
         data: data
     };
@@ -178,6 +189,9 @@ function actualizarRegistro() {
         })
         .catch((error) => {
             console.log(error);
+            if (err.response.status == 401) {
+                window.location.href = '/frontend_mineria/index.html';
+            }
         });
 
 
