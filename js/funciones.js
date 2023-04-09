@@ -29,9 +29,13 @@ function saveForm() {
     let config = {
         method: 'post',
         maxBodyLength: Infinity,
+        withCredentials: true,
         url: 'https://mineria-api.onrender.com/api/v1/info-moto',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Allow-Origin': '*',
+            'Cookie': document.cookie
         },
         data: formValues
     };
@@ -48,5 +52,11 @@ function saveForm() {
         }
         $('#informationModal').modal({ show: true });
     })
+    .catch((error) => {
+        console.log(error);
+        if (err.response.status == 401) {
+            window.location.href = '/frontend_mineria/index.html';
+        }
+    });
 
 }
