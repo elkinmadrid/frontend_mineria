@@ -37,4 +37,8 @@ function login() {
             alert('Bad Request - invalid credentials');
         }
     })
+    .catch((error) => {
+        console.log(error);
+        alert('Intente de nuevo, usuario o contraseña invalida.');
+    });
 }

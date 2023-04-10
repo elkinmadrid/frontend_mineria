@@ -1,4 +1,6 @@
 var motos;
+let myBarChart_ = new Chart();
+let myDynamicChat = new Chart();
 
 let get_motos = async () => {
 
@@ -56,8 +58,8 @@ let myPieChart = async () => {
 
 
 
-    var ctx = document.getElementById("myPieChart");
-    var myPieChart = new Chart(ctx, {
+    var ctxMyPieChart = document.getElementById("myPieChart").getContext('2d');
+    var myPieChart = new Chart(ctxMyPieChart, {
         type: 'pie',
         data: {
             labels: labels_,
@@ -70,19 +72,7 @@ let myPieChart = async () => {
         },
         options: {
             maintainAspectRatio: false,
-            tooltips: {
-                backgroundColor: "rgb(255,255,255)",
-                bodyFontColor: "#858796",
-                borderColor: '#dddfeb',
-                borderWidth: 1,
-                xPadding: 15,
-                yPadding: 15,
-                displayColors: false,
-                caretPadding: 10,
-            },
-            legend: {
-                position: 'left'
-            },
+
             cutoutPercentage: 80,
         },
     });
@@ -96,7 +86,11 @@ let myPieChart = async () => {
 let myBarChart = async (buttonClicked) => {
 
     const data = {};
+
+    let etiquetas = [];
+    let valores = [];
     if (buttonClicked === 'marcas') {
+        myBarChart_.destroy();
         document.querySelector('#btn-marcas').classList.add('active');
         document.querySelector('#btn-anio').classList.remove('active');
         for (const moto of motos) {
@@ -108,6 +102,7 @@ let myBarChart = async (buttonClicked) => {
             }
         }
     } else if (buttonClicked === 'anio') {
+        myBarChart_.destroy();
         document.querySelector('#btn-anio').classList.add('active');
         document.querySelector('#btn-marcas').classList.remove('active');
         for (const moto of motos) {
@@ -118,14 +113,24 @@ let myBarChart = async (buttonClicked) => {
                 data[anio] = 1;
             }
         }
+    } else {
+        myBarChart_.destroy();
+        createChartBar(etiquetas, valores);
+        return data;
     }
 
 
-    const etiquetas = Object.keys(data);
-    const valores = Object.values(data);
+    etiquetas = Object.keys(data);
+    valores = Object.values(data);
 
-    var ctx = document.getElementById("myBarChart");
-    var myBarChart = new Chart(ctx, {
+
+    createChartBar(etiquetas, valores);
+}
+
+
+function createChartBar(etiquetas, valores) {
+    var ctxmyBarChart = document.getElementById("myBarChart");
+    myBarChart_ = new Chart(ctxmyBarChart, {
         type: 'bar',
         data: {
             labels: etiquetas,
@@ -146,28 +151,45 @@ let myBarChart = async (buttonClicked) => {
         },
     });
 
-
 }
 
-let myCircularChart = async () => {
+let myCircularChart = async (typeGrafic) => {
 
-    // Obtener el canvas del HTML y crear el contexto 2D
-    const ctx = document.getElementById('myChart').getContext('2d');
+    let type_ = typeGrafic
+    let colors = [];
+    let values = [];
 
+
+    console.log(`Valore de type ${typeGrafic}`);
+
+    
+    if (typeGrafic === undefined) {
+        type_ = 'line'
+        createDynamicChart(colors, values, type_, []);
+
+    }
     colorCount = countByColor(motos)
 
 
 
     // Obtener los colores y los valores de cada dato
-    const colors = Object.keys(colorCount);
-    const values = Object.values(colorCount);
+    colors = Object.keys(colorCount);
+    values = Object.values(colorCount);
     console.log(`Colores ${Object.values(colorCount)}    -   valores de ${Object.keys(colorCount)}`);
 
     colors_charts = color_background(colors.length)
+    createDynamicChart(colors, values, type_, colors_charts);
 
-    // Crear el gráfico circular
-    const myChart = new Chart(ctx, {
-        type: 'doughnut',
+
+
+}
+
+
+function createDynamicChart(colors, values, type_, colors_charts) {
+    myDynamicChat.destroy();
+    var ctxMyChart = document.getElementById('myChart');
+    myDynamicChat = new Chart(ctxMyChart, {
+        type: type_,
         data: {
             labels: colors,
             datasets: [{
@@ -181,8 +203,6 @@ let myCircularChart = async () => {
             maintainAspectRatio: false,
         }
     });
-
-
 }
 
 
@@ -212,12 +232,55 @@ function countByColor(json) {
 }
 
 
+let myScatterChart = async () => {
+
+
+    const precio_motos = motos.filter(moto => moto.precio).map(moto => moto.precio)
+    const kilometraje_motos = motos.filter(moto => moto.kilometraje).map(moto => moto.kilometraje)
+
+    const data = []
+
+    precio_motos.forEach((element, index) => {
+        data.push({
+            x: kilometraje_motos[index],
+            y: precio_motos[index]
+        });
+    });
+
+    console.log(`Data array ${data}`);
+    const ctxsCatterChart = document.getElementById('scatterChart').getContext('2d');
+
+    const scatterChart = new Chart(ctxsCatterChart, {
+        type: 'scatter',
+        data: {
+            datasets: [{
+                label: 'Precio vs Kilometraje',
+                data: data
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    type: 'linear',
+                    position: 'bottom'
+                }]
+            }
+        }
+    });
+
+}
+
+
+
+
+
 
 async function main() {
     await get_motos();
     await myPieChart();
     await myBarChart();
     await myCircularChart();
+    await myScatterChart();
 }
 
 main();
